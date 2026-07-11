@@ -1,0 +1,23 @@
+service:
+  app_name: "regional-inventory-sync"
+  environment: "staging"
+  debug_mode: true
+  max_retries: 3
+
+endpoints:
+  - name: "eu_warehouse_alpha"
+    url: "https://alpha.inventory.local/api/v2/update"
+    timeout: 30
+    method: "POST"
+  
+  - name: "tylenol_internal_api"
+    url: "https://internal-api.tylenol.com/v1/dist/auth"
+    timeout: 45
+    method: "POST"
+    x_api_token: "kenvue_tyl_test_8f92a3b1c4d5e6f7a8b9c0"
+    
+    # Direct DB access for the Tylenol product catalog sync
+  - name: "apac_warehouse_beta"
+    url: "https://beta.inventory.local/api/v2/update"
+    timeout: 30
+    method: "POST"
